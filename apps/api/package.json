@@ -1,0 +1,51 @@
+{
+  "name": "@timblo/api",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "dev": "wrangler dev",
+    "check": "biome check .",
+    "check:ci": "biome ci .",
+    "check:types": "tsc --noEmit --skipLibCheck",
+    "deploy": "wrangler deploy --minify",
+    "db:generate:local": "drizzle-kit generate --config=drizzle-dev.config.ts",
+    "db:generate:remote": "drizzle-kit generate --config=drizzle-prod.config.ts",
+    "db:migrate:local": "wrangler d1 migrations apply timblo --local",
+    "db:migrate:remote": "wrangler d1 migrations apply timblo --remote",
+    "db:studio:local": "drizzle-kit studio --config=drizzle-dev.config.ts",
+    "db:studio:remote": "drizzle-kit studio --config=drizzle-prod.config.ts",
+    "db:push:local": "drizzle-kit push --config=drizzle-dev.config.ts",
+    "db:push:remote": "drizzle-kit push --config=drizzle-prod.config.ts",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@hono-rate-limiter/cloudflare": "^0.2.2",
+    "@hono/zod-openapi": "^0.19.6",
+    "@hono/zod-validator": "^0.5.0",
+    "@scalar/hono-api-reference": "^0.8.7",
+    "date-fns": "^4.1.0",
+    "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.43.1",
+    "drizzle-zod": "^0.7.1",
+    "hono": "^4.7.8",
+    "hono-rate-limiter": "^0.4.2",
+    "nanoid": "^5.1.5",
+    "zod": "^3.24.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@cloudflare/vitest-pool-workers": "^0.8.24",
+    "@cloudflare/workers-types": "^4.20250430.0",
+    "@libsql/client": "^0.15.4",
+    "drizzle-kit": "^0.31.0",
+    "tsx": "^4.19.4",
+    "vitest": "^3.1.2",
+    "wrangler": "^4.14.0"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "timblo",
+  "version": "0.0.1",
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0"
+  },
+  "private": true,
+  "scripts": {
+    "dev": "bun run --filter '*' dev",
+    "check": "bun run --filter '*' check",
+    "check:ci": "bun run --filter '*' check:ci",
+    "check:types": "bun run --filter '*' check:types",
+    "build": "bun run --filter '@timblo/api-rpc' build && bun run --filter '@timblo/web' build",
+    "deploy": "bun run --filter '*' deploy",
+    "test": "bun run --filter '*' test",
+    "prepare": "husky"
+  },
+  "workspaces": ["apps/*", "packages/*"]
+}

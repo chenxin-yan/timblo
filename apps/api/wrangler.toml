@@ -1,0 +1,30 @@
+name = "timblo"
+main = "src/app.ts"
+compatibility_date = "2025-03-17"
+routes = [{ pattern = "timblo.co", custom_domain = true }]
+
+[assets]
+directory = "public"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "timblo"
+database_id = "52d8d795-ab2c-491f-b969-cbc7f969e71c"
+migrations_dir = "./src/drizzle/migrations"
+
+[triggers]
+crons = ["0 15 1 * *"]
+
+# The rate limiting API is in open beta.
+[[unsafe.bindings]]
+name = "RATE_LIMITER"
+type = "ratelimit"
+# An identifier you define, that is unique to your Cloudflare account.
+# Must be an integer.
+namespace_id = "1002"
+
+# Limit: the number of tokens allowed within a given period in a single
+# Cloudflare location
+# Period: the duration of the period, in seconds. Must be either 10 or 60
+simple = { limit = 80, period = 60 }

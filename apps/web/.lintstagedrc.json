@@ -1,0 +1,3 @@
+{
+  "*": "biome check ./src --write --no-errors-on-unmatched --files-ignore-unknown=true"
+}

@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: build & test
+    steps:
+      - uses: actions/checkout@v4
+      - name: 📦 set up Bun.js
+        uses: oven-sh/setup-bun@v2
+      - name: 📦 Install dependencies
+        run: bun install
+      - name: 🧹 Lint
+        run: bun run check:ci
+      - name: 🛠️ Build
+        run: bun run build
+      - name: ✅ Typecheck
+        run: bun run check:types
+      - name: 🧪 Test
+        run: bun run test
